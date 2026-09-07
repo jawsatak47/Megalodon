@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAWS CENTRAL — The Creative Universe of JawsAtak47</title>
-<meta name="description" content="The central portal for the JawsAtak47 creative universe — art, music, QuarkForce, QuarkZine, QuarkUniversity, Canvas Wars, JawsAtakTV and Sinical Skateboards.">
+<title>JAWS WORLD — The Creative Universe of JawsAtak47</title>
+<meta name="description" content="The central portal for the JawsAtak47 creative universe — art, music, QuarkForce, QuarkZine, QuarkUniversity, CanvasWars, JawsAtakTV and Sinical Skateboards.">
 
 <!-- ============================================================
      FONTS — unchanged from v1 (kept on request):
@@ -197,7 +197,7 @@ section{ position:relative; padding:130px 0; }
   border:1px solid var(--line-gold); position:relative;
 }
 .about-portrait::after{
-  content:'PORTRAIT — REPLACE VIA .about-portrait BACKGROUND-IMAGE';
+  content:'DSC08070.jpg';
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   text-align:center; padding:20px; font-family:var(--font-mono); font-size:0.68rem;
   letter-spacing:0.05em; color:var(--ink-faint); background:rgba(17,15,13,0.55);
@@ -246,7 +246,7 @@ footer{ border-top:1px solid var(--line); padding:74px 0 42px; }
       <li><a href="#portals">Portals</a></li>
       <li><a href="#universe">Universe</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#transmissions">Transmissions</a></li>
+      <li><a href="#transmissions">CanvasWars</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -358,14 +358,15 @@ footer{ border-top:1px solid var(--line); padding:74px 0 42px; }
 
 // ---- 1. Portal rows (order = numbering, generated automatically) ----
 const PORTALS = [
-  { name: 'Jaws Art',            desc: 'Graffiti, fine art, lettering, illustration, murals, gold leaf and commissions — the visual work under my own name.', url: 'YOUR_JAWS_ART_URL', cta: 'Enter Jaws Art' },
-  { name: 'JawsAtak47',          desc: 'The music side. Albums, collaborations, productions and videos from JawsAtak47.', url: 'YOUR_MUSIC_URL', cta: 'Enter Music' },
-  { name: 'QuarkForce',          desc: 'Characters, worlds and stories — the original IP universe everything else eventually connects back to.', url: 'YOUR_QUARKFORCE_URL', cta: 'Enter QuarkForce' },
-  { name: 'QuarkZine',           desc: 'The independent art, culture and character publication out of the QuarkForce universe.', url: 'YOUR_QUARKZINE_URL', cta: 'Read QuarkZine' },
-  { name: 'QuarkUniversity',     desc: 'Classes in drawing, graffiti, lettering, sign painting and the creative business behind the art.', url: 'YOUR_QUARKUNIVERSITY_URL', cta: 'Enter University' },
-  { name: 'Canvas Wars',         desc: 'Live art battles and events — artists, canvases and controlled creative chaos, in person.', url: 'YOUR_CANVASWARS_URL', cta: 'Enter Canvas Wars' },
-  { name: 'JawsAtakTV',          desc: 'Process videos, music videos, interviews and everything happening across the universe, on camera.', url: 'YOUR_JAWSATAKTV_URL', cta: 'Watch JawsAtakTV' },
-  { name: 'Sinical Skateboards', desc: 'Deck graphics and the skate culture roots underneath the rest of the work.', url: 'YOUR_SINICAL_URL', cta: 'Enter Sinical' }
+  { name: 'Jaws Art',            desc: 'Graffiti, fine art, lettering, illustration, murals, gold leaf and commissions — the visual work under my own name.', url: 'https://jawsatak47.wixsite.com/jaws', cta: 'Enter Jaws Art' },
+  { name: 'JawsAtak47',          desc: 'The music side. Albums, collaborations, productions and videos from JawsAtak47.', url: 'https://jawsatak47.github.io/JawsAtak47Music/', cta: 'Enter Music' },
+  { name: 'QuarkForce',          desc: 'Characters, worlds and stories — the original IP universe everything else eventually connects back to.', url: 'https://jawsatak47.github.io/QF1A/', cta: 'Enter QuarkForce' },
+  { name: 'QuarkZine',           desc: 'The independent art, culture and character publication out of the QuarkForce universe.', url: 'https://jawsatak47.github.io/QuarkZine-Homease/', cta: 'Read QuarkZine' },
+  { name: 'QuarkUniversity',     desc: 'Classes in drawing, graffiti, lettering, sign painting and the creative business behind the art.', url: 'https://jawsatak47.github.io/QuarkUniversity/', cta: 'Enter University' },
+  { name: 'Canvas Wars',         desc: 'Live art battles and events — artists, canvases and controlled creative chaos, in person.', url: 'https://jawsatak47.github.io/MonsTober-stage1/', cta: 'Enter Canvas Wars' },
+  { name: 'JawsAtakTV',          desc: 'Process videos, music videos, interviews and everything happening across the universe, on camera.', url: 'https://jawsatak47.github.io/JawsAtakTV/', cta: 'Watch JawsAtakTV' },
+  { name: 'Sinical Skateboards', desc: 'Deck graphics and the skate culture roots underneath the rest of the work.', url: 'https://www.boardpusher.com/profile/SinicalSkateCo', cta: 'Ride Sinical Skateboards' },
+  { name: 'BOOKING', desc: 'Book Jaws meeting.', url: 'https://jawsatak47.github.io/bookingsclaud/', cta: 'Book JawsAtak' }
 ];
 
 // ---- 2. Discipline nodes for the system diagram ----
@@ -373,10 +374,10 @@ const DISCIPLINES = ['ART','MUSIC','CHARACTERS','MEDIA','EDUCATION','EVENTS','SK
 
 // ---- 3. Current Transmissions ----
 const TRANSMISSIONS = [
-  { label: 'New art',        title: 'Latest Piece',     desc: 'Swap in your newest mural, canvas or commission.', url: 'YOUR_JAWS_ART_URL', image: '' },
-  { label: 'New music',      title: 'Latest Release',   desc: 'Swap in your newest track, video or drop.',        url: 'YOUR_MUSIC_URL',    image: '' },
-  { label: 'Upcoming event', title: 'Next Canvas Wars', desc: 'Swap in the next event date and city.',            url: 'YOUR_CANVASWARS_URL', image: '' },
-  { label: 'Latest video',   title: 'Newest Upload',    desc: 'Swap in your latest JawsAtakTV video.',            url: 'YOUR_JAWSATAKTV_URL', image: '' }
+  { label: 'New art',        title: 'Latest Piece',     desc: 'Swap in your newest mural, canvas or commission.', url: 'https://jawsatak47.wixsite.com/jaws', image: '' },
+  { label: 'New music',      title: 'Latest Release',   desc: 'Swap in your newest track, video or drop.',        url: 'https://jawsatak47.github.io/JawsAtak47Music/',    image: '' },
+  { label: 'Upcoming event', title: 'Next Canvas Wars', desc: 'Swap in the next event date and city.',            url: 'https://jawsatak47.github.io/MonsTober-stage1/', image: '' },
+  { label: 'Latest video',   title: 'Newest Upload',    desc: 'Swap in your latest JawsAtakTV video.',            url: 'https://jawsatak47.github.io/JawsAtakTV/', image: '' }
 ];
 
 // ---- 4. Social links ----
