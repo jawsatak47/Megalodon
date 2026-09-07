@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAWS CENTRAL — The Creative Universe of JawsAtak47</title>
+<meta name="description" content="The central portal for the JawsAtak47 creative universe — art, music, QuarkForce, QuarkZine, QuarkUniversity, Canvas Wars, JawsAtakTV and Sinical Skateboards.">
+
+<!-- ============================================================
+     FONTS — unchanged from v1 (kept on request):
+     Display = Big Shoulders Display (headlines, numerals)
+     Mono    = IBM Plex Mono (small labels only, used sparingly)
+     Body    = Work Sans (everything you read)
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   v2 direction: dark charcoal-grey + a single warm brass/gold —
+   no secondary hues. Quieter, more editorial, less "interface."
+============================================================ */
+:root{
+  --bg:            #110f0d;   /* dark warm charcoal, not flat black */
+  --bg-panel:      #1b1815;
+  --bg-panel-2:    #221e19;
+  --ink:           #f1eadd;
+  --ink-dim:       #a99f8f;
+  --ink-faint:     #6d6656;
+  --gold:          #b6913f;   /* deeper, brass-like — not neon */
+  --gold-bright:   #d9b876;
+  --gold-soft:     rgba(182,145,63,0.14);
+  --line:          rgba(240,233,220,0.09);
+  --line-gold:     rgba(217,184,118,0.30);
+
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+  --font-body:    'Work Sans', sans-serif;
+
+  --container: 1140px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ margin:0; font-family:var(--font-display); font-weight:900; }
+p{ margin:0; }
+button{ font-family:inherit; cursor:pointer; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+
+::selection{ background:var(--gold); color:#110f0d; }
+:focus-visible{ outline:1px solid var(--gold-bright); outline-offset:4px; }
+
+.wrap{ max-width:var(--container); margin:0 auto; padding:0 28px; }
+
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:500;
+  opacity:0.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   2. NAV
+============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:400;
+  background:rgba(17,15,13,0.86);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-row{ display:flex; align-items:center; justify-content:space-between; height:66px; }
+.nav-brand{ font-family:var(--font-display); font-weight:900; font-size:1.3rem; letter-spacing:0.03em; }
+.nav-brand span{ color:var(--gold); }
+.nav-links{ display:flex; gap:30px; list-style:none; margin:0; padding:0; font-size:0.82rem; overflow-x:auto; scrollbar-width:none; }
+.nav-links::-webkit-scrollbar{ display:none; }
+.nav-links a{ color:var(--ink-dim); white-space:nowrap; padding:4px 0; border-bottom:1px solid transparent; transition:color 0.25s ease, border-color 0.25s ease; }
+.nav-links a:hover{ color:var(--gold-bright); border-color:var(--gold); }
+
+/* ============================================================
+   3. HERO
+   Quieter than v1: no technical grid, no pulsing status dot —
+   just a soft field of drifting gold motes and a warm vignette,
+   like dust suspended in low light.
+============================================================ */
+.hero{
+  position:relative; min-height:100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding-top:66px; overflow:hidden;
+}
+.hero-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+.hero-vignette{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:radial-gradient(ellipse 70% 55% at 50% 40%, rgba(182,145,63,0.10), transparent 70%),
+             radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0,0,0,0.55), transparent 60%);
+}
+.hero-inner{ position:relative; z-index:2; padding:80px 28px 60px; }
+.hero-kicker{
+  font-family:var(--font-body); font-style:italic; font-weight:400;
+  font-size:1rem; color:var(--gold-bright); letter-spacing:0.01em;
+  margin-bottom:24px;
+}
+.hero-title{
+  font-size:clamp(3.2rem, 11vw, 7.6rem);
+  line-height:0.88; text-transform:uppercase;
+}
+.hero-title .accent{ color:transparent; -webkit-text-stroke:1.4px var(--gold-bright); }
+.hero-sub{
+  font-family:var(--font-mono); font-size:clamp(0.85rem, 1.6vw, 1rem);
+  color:var(--ink-dim); letter-spacing:0.08em; margin-top:20px; text-transform:uppercase;
+}
+.hero-statement{ max-width:600px; margin-top:32px; font-size:1.15rem; color:var(--ink-dim); }
+.hero-statement strong{ color:var(--ink); font-weight:600; }
+.hero-scroll{
+  position:relative; z-index:2; margin:0 auto; padding-bottom:36px;
+  font-family:var(--font-mono); font-size:0.68rem; color:var(--ink-faint); letter-spacing:0.1em;
+}
+
+/* ============================================================
+   4. SECTION SCAFFOLDING
+============================================================ */
+section{ position:relative; padding:130px 0; }
+.section-head{ margin-bottom:64px; max-width:640px; }
+.section-tag{ font-family:var(--font-body); font-style:italic; font-size:1rem; color:var(--gold-bright); margin-bottom:14px; }
+.section-title{ font-size:clamp(2.1rem, 4.6vw, 3.1rem); text-transform:uppercase; line-height:1; }
+.section-desc{ margin-top:18px; color:var(--ink-dim); font-size:1.05rem; max-width:540px; }
+
+/* ============================================================
+   5. PORTAL DIRECTORY (stacked, not touching)
+   Each world is its own full-width row separated by a hairline
+   gold rule, with generous vertical air between them — a menu
+   or directory, not a grid of app tiles.
+============================================================ */
+.portal-list{ border-top:1px solid var(--line-gold); }
+.portal-row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:36px; padding:46px 4px; border-bottom:1px solid var(--line-gold);
+  transition:padding-left 0.4s ease, background 0.4s ease;
+}
+.portal-row:hover{ padding-left:22px; background:var(--gold-soft); }
+.portal-left{ display:flex; align-items:baseline; gap:34px; flex:1; min-width:0; }
+.portal-num{
+  font-family:var(--font-display); font-weight:800; font-size:2.1rem;
+  color:transparent; -webkit-text-stroke:1px var(--gold); min-width:74px; flex-shrink:0;
+}
+.portal-body{ min-width:0; }
+.portal-name{ font-size:2rem; text-transform:uppercase; line-height:1; }
+.portal-desc{ margin-top:10px; color:var(--ink-dim); max-width:520px; font-size:0.98rem; }
+.portal-enter{
+  font-family:var(--font-body); font-style:italic; font-size:0.95rem;
+  color:var(--ink-dim); border-bottom:1px solid var(--line-gold);
+  white-space:nowrap; flex-shrink:0; transition:color 0.3s ease, border-color 0.3s ease;
+}
+.portal-row:hover .portal-enter{ color:var(--gold-bright); border-color:var(--gold-bright); }
+
+@media (max-width:720px){
+  .portal-row{ flex-direction:column; align-items:flex-start; gap:16px; padding:38px 4px; }
+  .portal-left{ gap:20px; }
+  .portal-num{ font-size:1.6rem; min-width:auto; }
+  .portal-name{ font-size:1.6rem; }
+  .portal-row:hover{ padding-left:4px; }
+}
+
+/* ============================================================
+   6. SYSTEM DIAGRAM — "ONE CREATIVE UNIVERSE"
+   A quiet spine-and-tick diagram in gold hairlines — no circuit
+   dots, no glow, closer to a museum wall label than a UI graph.
+============================================================ */
+.system{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.system-diagram{ width:100%; height:auto; margin-top:10px; }
+.system-diagram text{ font-family:var(--font-body); fill:var(--ink-dim); }
+.system-diagram .node-main text{ fill:var(--ink); font-family:var(--font-display); }
+.system-diagram line{ stroke:var(--line-gold); stroke-width:1; }
+
+/* ============================================================
+   7. ABOUT
+============================================================ */
+.about-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:start; }
+@media (max-width:820px){ .about-grid{ grid-template-columns:1fr; gap:38px; } }
+.about-portrait{
+  aspect-ratio:4/5; background:var(--bg-panel) url('YOUR_JAWS_PORTRAIT_IMAGE_URL') center/cover no-repeat;
+  border:1px solid var(--line-gold); position:relative;
+}
+.about-portrait::after{
+  content:'PORTRAIT — REPLACE VIA .about-portrait BACKGROUND-IMAGE';
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:20px; font-family:var(--font-mono); font-size:0.68rem;
+  letter-spacing:0.05em; color:var(--ink-faint); background:rgba(17,15,13,0.55);
+}
+.about-copy p{ font-size:1.08rem; color:var(--ink-dim); margin-bottom:20px; max-width:60ch; }
+.about-copy p strong{ color:var(--ink); font-weight:600; }
+.about-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+.about-tags span{ font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.05em; color:var(--gold-bright); border:1px solid var(--line-gold); padding:7px 13px; }
+
+/* ============================================================
+   8. CURRENT TRANSMISSIONS
+============================================================ */
+.feed-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line-gold); border:1px solid var(--line-gold); }
+@media (max-width:980px){ .feed-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:560px){ .feed-grid{ grid-template-columns:1fr; } }
+.feed-card{ background:var(--bg); display:flex; flex-direction:column; }
+.feed-media{ aspect-ratio:4/3; background:var(--bg-panel-2) center/cover no-repeat; border-bottom:1px solid var(--line-gold); }
+.feed-body{ padding:20px 20px 24px; }
+.feed-label{ font-family:var(--font-body); font-style:italic; font-size:0.82rem; color:var(--gold-bright); }
+.feed-title{ font-size:1.3rem; text-transform:uppercase; margin-top:8px; }
+.feed-desc{ font-size:0.88rem; color:var(--ink-dim); margin-top:8px; }
+.feed-link{ display:inline-block; margin-top:14px; font-family:var(--font-mono); font-size:0.7rem; color:var(--ink-dim); border-bottom:1px solid var(--line-gold); }
+
+/* ============================================================
+   9. FOOTER
+============================================================ */
+footer{ border-top:1px solid var(--line); padding:74px 0 42px; }
+.footer-top{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px; padding-bottom:42px; border-bottom:1px solid var(--line); }
+.footer-word{ font-family:var(--font-display); font-weight:900; font-size:clamp(2.2rem, 5.6vw, 4rem); text-transform:uppercase; line-height:0.9; }
+.footer-word span{ color:var(--gold); }
+.footer-tagline{ font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-dim); margin-top:10px; }
+.footer-socials{ display:flex; gap:24px; flex-wrap:wrap; font-size:0.9rem; font-style:italic; }
+.footer-socials a{ color:var(--ink-dim); border-bottom:1px solid transparent; transition:color 0.25s ease, border-color 0.25s ease; }
+.footer-socials a:hover{ color:var(--gold-bright); border-color:var(--gold); }
+.footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:28px; font-family:var(--font-mono); font-size:0.68rem; color:var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="wrap nav-row">
+    <div class="nav-brand">JAWS<span>·</span>CENTRAL</div>
+    <ul class="nav-links">
+      <li><a href="#portals">Portals</a></li>
+      <li><a href="#universe">Universe</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#transmissions">Transmissions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="hero-inner wrap">
+    <p class="hero-kicker">Twenty-plus years, one door in —</p>
+    <h1 class="hero-title">JAWS<br><span class="accent">CENTRAL</span></h1>
+    <p class="hero-sub">The Creative Universe of JawsAtak47</p>
+    <p class="hero-statement">
+      <strong>Art. Music. Characters. Culture. Media. Education.</strong>
+      One universe, several rooms — everything you're looking for lives behind one of these doors.
+    </p>
+  </div>
+  <div class="hero-scroll wrap">SCROLL — EIGHT WORLDS BELOW</div>
+</header>
+
+<!-- ============================================================
+     PORTAL DIRECTORY
+     Edit the PORTALS array in the JS at the bottom to change
+     urls, names or descriptions. Numbering is generated
+     automatically from the order of the list.
+============================================================ -->
+<section id="portals">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Main portals</div>
+      <h2 class="section-title">Pick a world</h2>
+      <p class="section-desc">Eight separate sites, kept deliberately apart — this is just where people find the door to each one.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="portal-list" id="portalList"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<section class="system" id="universe">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">System map</div>
+      <h2 class="section-title">One creative universe</h2>
+      <p class="section-desc">Eight separate rooms, one house. Everything below runs off the same engine.</p>
+    </div>
+    <svg class="system-diagram" viewBox="0 0 1120 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing JAWS branching into disciplines, which feed the JawsAtak47 / QuarkForce ecosystem">
+      <line x1="560" y1="44" x2="560" y2="88"></line>
+      <g class="node-main">
+        <text x="560" y="32" text-anchor="middle" font-size="24" letter-spacing="2">JAWS</text>
+      </g>
+      <g id="disciplineNodes" font-size="12" letter-spacing="0.5"><!-- injected by JS --></g>
+      <line x1="560" y1="164" x2="560" y2="204"></line>
+      <rect x="320" y="206" width="480" height="58" fill="none" stroke="var(--line-gold)"></rect>
+      <text x="560" y="230" text-anchor="middle" font-size="13" letter-spacing="1" fill="var(--gold-bright)" font-family="'Big Shoulders Display', sans-serif">THE JAWSATAK47 / QUARKFORCE ECOSYSTEM</text>
+      <text x="560" y="250" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">Eight portals. One engine.</text>
+    </svg>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-portrait" role="img" aria-label="Portrait of Jaws — replace background-image in CSS"></div>
+    <div class="about-copy">
+      <div class="section-tag">Meet Jaws</div>
+      <h2 class="section-title" style="margin-bottom:24px;">Anthony "Jaws" Vella</h2>
+      <p>Twenty-plus years in, this still started the same way most of it did: a wall, a can, and no permission. <strong>Graffiti came first.</strong> Everything else grew out from there.</p>
+      <p>Since then it's stretched into fine art, hand lettering, sign painting and gold leaf — trained the traditional way, under working sign painters — plus murals, illustration, design, and a hip-hop project that runs parallel to all of it. <strong>QuarkForce</strong> is where the characters and the science-fiction side of the brain live. <strong>JawsAtak47</strong> is where the music does.</p>
+      <p>None of it is a side hustle to the other. It's one practice wearing different tools.</p>
+      <div class="about-tags">
+        <span>Graffiti</span><span>Fine Art</span><span>Sign Painting</span><span>Gold Leaf</span>
+        <span>Murals</span><span>Illustration</span><span>Hip-Hop</span><span>Education</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="transmissions">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Current transmissions</div>
+      <h2 class="section-title">What's live right now</h2>
+      <p class="section-desc">The most recent drop from each side of the operation. Update this section as often as things change.</p>
+    </div>
+    <div class="feed-grid" id="feedGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-word">JAWSATAK<span>47</span></div>
+        <div class="footer-tagline">ART · MUSIC · UNIVERSE · CULTURE</div>
+      </div>
+      <div class="footer-socials" id="footerSocials"><!-- injected by JS --></div>
+    </div>
+    <div class="footer-bottom wrap" style="padding:0;">
+      <span>© 2026 JAWSATAK47. All worlds reserved.</span>
+      <span>JAWS CENTRAL — v2.0</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — the only part of the file you should need to touch.
+============================================================ */
+
+// ---- 1. Portal rows (order = numbering, generated automatically) ----
+const PORTALS = [
+  { name: 'Jaws Art',            desc: 'Graffiti, fine art, lettering, illustration, murals, gold leaf and commissions — the visual work under my own name.', url: 'YOUR_JAWS_ART_URL', cta: 'Enter Jaws Art' },
+  { name: 'JawsAtak47',          desc: 'The music side. Albums, collaborations, productions and videos from JawsAtak47.', url: 'YOUR_MUSIC_URL', cta: 'Enter Music' },
+  { name: 'QuarkForce',          desc: 'Characters, worlds and stories — the original IP universe everything else eventually connects back to.', url: 'YOUR_QUARKFORCE_URL', cta: 'Enter QuarkForce' },
+  { name: 'QuarkZine',           desc: 'The independent art, culture and character publication out of the QuarkForce universe.', url: 'YOUR_QUARKZINE_URL', cta: 'Read QuarkZine' },
+  { name: 'QuarkUniversity',     desc: 'Classes in drawing, graffiti, lettering, sign painting and the creative business behind the art.', url: 'YOUR_QUARKUNIVERSITY_URL', cta: 'Enter University' },
+  { name: 'Canvas Wars',         desc: 'Live art battles and events — artists, canvases and controlled creative chaos, in person.', url: 'YOUR_CANVASWARS_URL', cta: 'Enter Canvas Wars' },
+  { name: 'JawsAtakTV',          desc: 'Process videos, music videos, interviews and everything happening across the universe, on camera.', url: 'YOUR_JAWSATAKTV_URL', cta: 'Watch JawsAtakTV' },
+  { name: 'Sinical Skateboards', desc: 'Deck graphics and the skate culture roots underneath the rest of the work.', url: 'YOUR_SINICAL_URL', cta: 'Enter Sinical' }
+];
+
+// ---- 2. Discipline nodes for the system diagram ----
+const DISCIPLINES = ['ART','MUSIC','CHARACTERS','MEDIA','EDUCATION','EVENTS','SKATE'];
+
+// ---- 3. Current Transmissions ----
+const TRANSMISSIONS = [
+  { label: 'New art',        title: 'Latest Piece',     desc: 'Swap in your newest mural, canvas or commission.', url: 'YOUR_JAWS_ART_URL', image: '' },
+  { label: 'New music',      title: 'Latest Release',   desc: 'Swap in your newest track, video or drop.',        url: 'YOUR_MUSIC_URL',    image: '' },
+  { label: 'Upcoming event', title: 'Next Canvas Wars', desc: 'Swap in the next event date and city.',            url: 'YOUR_CANVASWARS_URL', image: '' },
+  { label: 'Latest video',   title: 'Newest Upload',    desc: 'Swap in your latest JawsAtakTV video.',            url: 'YOUR_JAWSATAKTV_URL', image: '' }
+];
+
+// ---- 4. Social links ----
+const SOCIALS = [
+  { label: 'Instagram', url: 'YOUR_INSTAGRAM_URL' },
+  { label: 'YouTube',   url: 'YOUR_YOUTUBE_URL' },
+  { label: 'TikTok',    url: 'YOUR_TIKTOK_URL' },
+  { label: 'Facebook',  url: 'YOUR_FACEBOOK_URL' },
+  { label: 'Email',     url: 'mailto:YOUR_EMAIL_ADDRESS' }
+];
+
+/* ============================================================
+   RENDER
+============================================================ */
+const portalList = document.getElementById('portalList');
+PORTALS.forEach((p, i) => {
+  const row = document.createElement('a');
+  row.className = 'portal-row';
+  row.href = p.url;
+  const num = String(i + 1).padStart(2, '0');
+  row.innerHTML = `
+    <div class="portal-left">
+      <div class="portal-num">N&deg;${num}</div>
+      <div class="portal-body">
+        <h3 class="portal-name">${p.name}</h3>
+        <p class="portal-desc">${p.desc}</p>
+      </div>
+    </div>
+    <span class="portal-enter">${p.cta}</span>
+  `;
+  portalList.appendChild(row);
+});
+
+// system diagram — spine + ticks, no dots/glow
+const g = document.getElementById('disciplineNodes');
+const nsSVG = 'http://www.w3.org/2000/svg';
+const count = DISCIPLINES.length;
+const startX = 100, endX = 1020, spineY = 118, tickTop = 106, tickBottom = 130;
+
+const spine = document.createElementNS(nsSVG, 'line');
+spine.setAttribute('x1', startX); spine.setAttribute('y1', spineY);
+spine.setAttribute('x2', endX);   spine.setAttribute('y2', spineY);
+g.appendChild(spine);
+
+DISCIPLINES.forEach((label, i) => {
+  const x = startX + (endX - startX) * (i / (count - 1));
+
+  const tick = document.createElementNS(nsSVG, 'line');
+  tick.setAttribute('x1', x); tick.setAttribute('y1', tickTop);
+  tick.setAttribute('x2', x); tick.setAttribute('y2', tickBottom);
+  g.appendChild(tick);
+
+  const drop = document.createElementNS(nsSVG, 'line');
+  drop.setAttribute('x1', x); drop.setAttribute('y1', tickBottom);
+  drop.setAttribute('x2', 560); drop.setAttribute('y2', 204);
+  drop.setAttribute('opacity', '0.35');
+  g.appendChild(drop);
+
+  const text = document.createElementNS(nsSVG, 'text');
+  text.setAttribute('x', x); text.setAttribute('y', tickBottom + 24);
+  text.setAttribute('text-anchor', 'middle');
+  text.textContent = label;
+  g.appendChild(text);
+});
+
+const feedGrid = document.getElementById('feedGrid');
+TRANSMISSIONS.forEach(t => {
+  const card = document.createElement('a');
+  card.className = 'feed-card';
+  card.href = t.url;
+  card.innerHTML = `
+    <div class="feed-media" style="${t.image ? `background-image:url('${t.image}')` : ''}"></div>
+    <div class="feed-body">
+      <div class="feed-label">${t.label}</div>
+      <h3 class="feed-title">${t.title}</h3>
+      <p class="feed-desc">${t.desc}</p>
+      <span class="feed-link">View →</span>
+    </div>
+  `;
+  feedGrid.appendChild(card);
+});
+
+const footerSocials = document.getElementById('footerSocials');
+SOCIALS.forEach(s => {
+  const a = document.createElement('a');
+  a.href = s.url;
+  a.textContent = s.label;
+  footerSocials.appendChild(a);
+});
+
+/* ============================================================
+   HERO CANVAS — soft drifting gold motes only, no technical grid.
+============================================================ */
+(function heroBackground(){
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  const hero = document.querySelector('.hero');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let w, h, dpr;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = hero.offsetWidth; h = hero.offsetHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const PARTICLE_COUNT = 34;
+  const particles = Array.from({length: PARTICLE_COUNT}, () => ({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.3 + 0.4,
+    vx: (Math.random() - 0.5) * 0.00009,
+    vy: (Math.random() - 0.5) * 0.00007,
+    a: Math.random() * 0.4 + 0.12
+  }));
+
+  let visible = true;
+  const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, {threshold:0});
+  io.observe(hero);
+
+  function drawParticles(){
+    particles.forEach(p => {
+      if(!reduceMotion){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < 0) p.x = 1; if(p.x > 1) p.x = 0;
+        if(p.y < 0) p.y = 1; if(p.y > 1) p.y = 0;
+      }
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(182,145,63,${p.a})`;
+      ctx.arc(p.x * w, p.y * h, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function frame(){
+    if(visible){ ctx.clearRect(0,0,w,h); drawParticles(); }
+    if(!reduceMotion) requestAnimationFrame(frame);
+  }
+
+  if(reduceMotion){ ctx.clearRect(0,0,w,h); drawParticles(); }
+  else { requestAnimationFrame(frame); }
+})();
+</script>
+</body>
+</html>
